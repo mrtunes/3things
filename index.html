@@ -58,6 +58,12 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             margin-bottom: 10px;
+            cursor: pointer;
+            user-select: none; /* Prevent text selection */
+        }
+        .task-item.completed {
+            text-decoration: line-through;
+            color: #999;
         }
     </style>
 </head>
@@ -87,14 +93,18 @@
 
         const taskList = document.getElementById('taskList');
         taskList.innerHTML = `
-            <div class="task-item">${task1}</div>
-            <div class="task-item">${task2}</div>
-            <div class="task-item">${task3}</div>
+            <div class="task-item" onclick="toggleTaskCompletion(this)">${task1}</div>
+            <div class="task-item" onclick="toggleTaskCompletion(this)">${task2}</div>
+            <div class="task-item" onclick="toggleTaskCompletion(this)">${task3}</div>
         `;
 
         // Clear input fields
         document.getElementById('todoForm').reset();
     });
+
+    function toggleTaskCompletion(taskElement) {
+        taskElement.classList.toggle('completed');
+    }
 </script>
 
 </body>
